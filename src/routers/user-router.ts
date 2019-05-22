@@ -64,7 +64,7 @@ userRouter.get('/:id', [authorization([{ roleId: 2, role: 'finance-manager' }]),
     }
 }])
 
-userRouter.patch('/:id', [authorization([{ roleId: 2, role: 'finance-manager' }]), async (req, res) => {
+userRouter.patch('/:id', [authorization([{ roleId: 1, role: 'admin' }]), async (req, res) => {
     let id = +req.params.id
     if(isNaN(id)){
         res.sendStatus(400)

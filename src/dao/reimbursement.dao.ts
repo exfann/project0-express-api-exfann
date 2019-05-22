@@ -7,7 +7,7 @@ export async function getReimbursementByStatus(rid:number){
     let client:PoolClient
     try{
         client = await connectionPool.connect()
-        let result = await client.query(`SELECT reimbursement_id, author, amount, submit, resolved, description, resolver, reimbursementstatus.status_id, reimbursementstatus.status, reimbursementtype.type_id, reimbursementtype.reimbursement_type FROM ers.reimbursements INNER JOIN ers.reimbursementstatus ON reimbursements.status = reimbursementstatus.status_id INNER JOIN ers.reimbursementtype ON reimbursements.reimbursement_type = reimbursementtype.type_id WHERE reimbursement_id = $1 `, [rid])
+        let result = await client.query(`SELECT reimbursement_id, author, amount, submit, resolved, description, resolver, reimbursementstatus.status_id, reimbursementstatus.status, reimbursementtype.type_id, reimbursementtype.reimbursement_type FROM ers.reimbursements INNER JOIN ers.reimbursementstatus ON reimbursements.status = reimbursementstatus.status_id INNER JOIN ers.reimbursementtype ON reimbursements.reimbursement_type = reimbursementtype.type_id WHERE reimbursementstatus.status_id = $1 `, [rid])
         // console.log(result.rows)
         // console.log(result)
         console.log('author')
