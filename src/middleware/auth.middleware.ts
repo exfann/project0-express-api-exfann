@@ -18,7 +18,7 @@ export function authorization(authRoles:Role[]){
         //make sure user has at least one role in authroles
         //console.log(req.session.user.role)
         for(let userRole of req.session.user.role){
-            console.log(req.session.user.user_id)
+            console.log(userRole.roleId)
             //console.log(typeof(req.session.user.role.roleId))
             // console.log(req.session.user.role)
             // console.log(`req.session.user.role = ${[req.session.user.role]}`)
@@ -30,9 +30,14 @@ export function authorization(authRoles:Role[]){
             //console.log(userRole)
 
 
-            if(userRole.roleId === authRoles[0].roleId){
+            if(userRole.roleId){
                 //console.log('THEYRE THE SAME WHY DO YOU GOTTA DO THIS TO ME')
-                isAuth = true
+                authRoles.forEach(element => {
+                    if(element.roleId === element.roleId){
+                        isAuth = true
+                    }
+                });
+                //isAuth = true
 
             }
             //console.log('DSAJLKFDSAJFDSAKJGFDSAIJGDSAIFDSAIJDSAPFIJFDSAIJFDSAIJ')

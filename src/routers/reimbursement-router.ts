@@ -11,7 +11,7 @@ import { submitReimbursement } from '../dao/reimbursement.dao';
 
 export const reimbursementRouter = express.Router()
 
-reimbursementRouter.get('/status/:id', [authorization([{ roleId: 2, role: 'finance-manager' }]), async (req, res) => {
+reimbursementRouter.get('/status/:id', [authorization([{ roleId: 2, role: 'finance-manager' }, {roleId: 1, role: 'admin'}]), async (req, res) => {
     let id = +req.params.id
     //console.log(id)
     if (isNaN(id)) {
@@ -29,7 +29,7 @@ reimbursementRouter.get('/status/:id', [authorization([{ roleId: 2, role: 'finan
     }
 }])
 
-reimbursementRouter.get('/author/userId/:id', [authorization([{ roleId: 2, role: 'finance-manager' }]), async (req, res) => {
+reimbursementRouter.get('/author/userId/:id', [authorization([{ roleId: 2, role: 'finance-manager' }, {roleId: 1, role: 'admin'}]), async (req, res) => {
     let id = +req.params.id
     //console.log(id)
     if (isNaN(id)) {
@@ -57,7 +57,7 @@ reimbursementRouter.post('', async (req,res) => {
     }
 })
 
-reimbursementRouter.patch('/:id', [authorization([{ roleId: 2, role: 'finance-manager' }]), async (req, res) => {
+reimbursementRouter.patch('/:id', [authorization([{ roleId: 2, role: 'finance-manager' }, {roleId: 1, role: 'admin'}]), async (req, res) => {
     let id = +req.params.id
     if(isNaN(id)){
         res.sendStatus(400)

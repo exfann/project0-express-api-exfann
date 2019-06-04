@@ -10,7 +10,7 @@ import { User } from '../models/user';
 
 export const userRouter = express.Router()
 
-userRouter.get('', [authorization([{ roleId: 2, role: 'finance-manager' }]), async (req, res) => {
+userRouter.get('', [authorization([{ roleId: 2, role: 'finance-manager' }, {roleId: 1, role: 'admin'}]), async (req, res) => {
     res.json(await getAllUsersService())
 }])
 
@@ -47,7 +47,7 @@ userRouter.post('/login', async (req, res) => {
 //     res.json(getAllUsersService())
 // }])
 
-userRouter.get('/:id', [authorization([{ roleId: 2, role: 'finance-manager' }]), async (req, res) => {
+userRouter.get('/:id', [authorization([{ roleId: 2, role: 'finance-manager' }, {roleId: 1, role: 'admin'}]), async (req, res) => {
     let id = +req.params.id//id is string by default, adding the + turns to int
     if (isNaN(id)) {
         res.sendStatus(400)

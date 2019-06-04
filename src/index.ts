@@ -4,6 +4,7 @@ import bodyParser = require('body-parser');
 import { sessionMiddleware } from './middleware/session.middleware';
 import { userRouter } from './routers/user-router';
 import { reimbursementRouter } from './routers/reimbursement-router';
+import { corsFilter } from './middleware/cors-filter.middleware';
 
 const app = express()
 
@@ -12,6 +13,8 @@ app.use(loggingMiddleware)
 app.use (bodyParser.json())
 
 app.use(sessionMiddleware)
+
+app.use(corsFilter)
 
 app.use('/users', userRouter)
 
