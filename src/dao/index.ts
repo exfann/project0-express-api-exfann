@@ -1,5 +1,5 @@
 import { Pool } from 'pg'
-//for jenkens to build woo
+//for jenkens to build woo please
 // console.log({
 //     user: process.env['MUSIC_API_USERNAME'],
 //     host: process.env['MUSIC_API_HOST'],
